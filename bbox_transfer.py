@@ -29,10 +29,10 @@ def type_transfer():
                 x_1 = float(line[2])/x_shap
                 y_1 = float(line[3])/y_shap
 
-                w=(x_0+x_1)/2
-                h=(y_0+y_1)/2
-                xc=x_0+w
-                yc=y_0+h
+                w=(x_1-x_0)
+                h=(y_1-y_0)
+                xc=x_0+(w/2)
+                yc=y_0+(h/2)
                 type = types.index(line[4][:-1])
                 box.append([type, xc, yc, w, h])
         
