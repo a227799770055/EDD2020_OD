@@ -9,7 +9,8 @@ img_=[]
 #只取 .jpg 後綴的檔案
 for i in f:
     if os.path.splitext(i)[1] == '.jpg':
-        img_.append(i)
+        p=os.path.join(image_path,i)
+        img_.append(p)
 
 #打亂順序
 np.random.shuffle(img_)

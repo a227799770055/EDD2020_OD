@@ -20,8 +20,10 @@ def read_img():
     print(boxs)
     #代表左下到右上
 
-
+    
     img = cv2.imread(image_path)
+    
+
 
     for i in boxs:
         cv2.rectangle(img, (i[0],i[1]), (i[2], i[3]), (0, 255, 0), 2)   

@@ -1,9 +1,10 @@
 import numpy as np 
 import os
+import cv2
 
 bbox_path = r'.\EndoCV2020-Endoscopy-Disease-Detection-Segmentation-subChallenge_data\bbox'
 bbox_yolo_path=r'.\EndoCV2020-Endoscopy-Disease-Detection-Segmentation-subChallenge_data\bbox_yolotype'
-
+i_path=r'C:\Users\eddie.hsiao\Documents\Eddie_Personal\yolo_test\EndoCV2020-Endoscopy-Disease-Detection-Segmentation-subChallenge_data\originalImages'
 types=['BE', 'suspicious', 'HGD', 'cancer', 'polyp']
 
 #read file_name 
@@ -12,13 +13,21 @@ def type_transfer():
     for i in bbox_files:
         box=[]
         path=os.path.join(bbox_path, i)
+        img_path=os.path.join(i_path, i.replace('.txt', '.jpg'))
+
+        #取得圖片大小
+        shap=cv2.imread(img_path).shape
+        y_shap=shap[0]
+        x_shap=shap[1]
+        
+
         with open(path, "r") as f:
             for line in f.readlines():
                 line = line.split(' ')
-                x_0 = int(line[0])
-                y_0 = int(line[1])
-                x_1 = int(line[2])
-                y_1 = int(line[3])
+                x_0 = float(line[0])/x_shap
+                y_0 = float(line[1])/y_shap
+                x_1 = float(line[2])/x_shap
+                y_1 = float(line[3])/y_shap
 
                 w=(x_0+x_1)/2
                 h=(y_0+y_1)/2
